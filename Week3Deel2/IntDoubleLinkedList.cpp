@@ -8,6 +8,7 @@ IntDoubleLinkedList::IntDoubleLinkedList()
     :   first(nullptr)
     ,   last(nullptr)
     ,   length(0)
+    ,   lastAction(nullptr)
 {
 }
 
@@ -45,6 +46,7 @@ void IntDoubleLinkedList::insertAtEnd( int i )
 
     toAdd->prev = last;
     last = toAdd;
+    lastAction = toAdd;
 
     length++;
 }
@@ -56,7 +58,25 @@ bool IntDoubleLinkedList::removeAtStart()
 
 bool IntDoubleLinkedList::removeAtEnd()
 {
-    return false;
+    if (last == nullptr) return false;
+
+    IntDoubleLink* toDelete = last;
+    if (last->getPrev() == nullptr) { // if there is no node before last, the list size must be 1
+        first = nullptr;
+        delete(last);
+        last = nullptr;
+        length--;
+        return true;
+    }
+    else {
+        auto toDelete = last;
+        last = last->getPrev();
+        last->next = nullptr;
+        delete(toDelete);
+        length--;
+    }
+
+    return true;
 }
 
 IntDoubleLink* IntDoubleLinkedList::getHead()
@@ -98,43 +118,59 @@ void IntDoubleLinkedList::rapidBubbleSort()
  * metingen van de duur van het sorteren...
  *
  *    aantal waarden:       duur in us:
- *        1000
- *        2000
- *        5000
- *       10000
+ *        1000                8172
+ *        2000               35580
+ *        5000              223294
+ *       10000              992933
  *         ...
  */  
 
 /*
- *  gemeten snelheid van dit algoritme: O(...)
+ *  gemeten snelheid van dit algoritme: O(n^2)
  *  onderbouwing:
- *
+ *      waar de waardes groeien met een factor van 2 vergroot de tijdsduur grofweg met een waarde van 4, wat 2^2 is.
  *
  */
 
 /*
  *  Vergelijking met bubblesort van week 3 deel 1
- *
- *
+ *  opdracht omschrijving op brightspace vraagt om een vergelijking met week 2 vraag 4? maar die bestaat niet zover ik weet.
+ *  Ik neem maar aan dat je deze week bedoelt.
+ *  
+ *  Bij deel 1 kwamen de bereking uit op O(n^3) en bij deze O(n^2). Dat is een flink verschil zonder de logica van het algoritme zelf te veranderen.
+ *  Dit toont hoe duur een enkelzijdige list kan zijn bij veel accesses. 
+ *  
  */
 
 void IntDoubleLinkedList::insertAction( int code )
 {
+    // delete all nodes after lastAction
+    while (lastAction != last) {
+        removeAtEnd();
+    }
+
+    insertAtEnd(code);
 }
 
 int IntDoubleLinkedList::undo()
 {
-    return -1; // return current value/action...
+    if (lastAction->getPrev() == nullptr) return -1;
+
+    lastAction = lastAction->getPrev();
+    return lastAction->value; // return current value/action...
 }
 
 int IntDoubleLinkedList::redo()
 {
-    return -1; // return current value/action...
+    if (lastAction->getNext() == nullptr) return -1;
+
+    lastAction = lastAction->getNext();
+    return lastAction->value; // return current value/action...
 }
 
 int IntDoubleLinkedList::getCurrentAction()
 {
-    return -1;
+    return lastAction->value;
 }
 
 void IntDoubleLinkedList::showAll()

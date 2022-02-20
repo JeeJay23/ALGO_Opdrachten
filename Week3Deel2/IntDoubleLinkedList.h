@@ -32,7 +32,7 @@ public: // alleen voor het gemak
     virtual void            showAll();
 
 private:
-    IntDoubleLink *first, *last;
+    IntDoubleLink *first, *last, *lastAction;
     int length;
 };
 
