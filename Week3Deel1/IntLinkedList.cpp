@@ -75,6 +75,19 @@ int IntLinkedList::length2() const
 
 void IntLinkedList::bubbleSort()
 {
+    for (int i = 0; i < length2() -1; i++) {
+        for (int j = length2() - 1; j > i; j--) {
+
+            IntLink* current = getAt(j);
+            IntLink* toCompare = getAt(j - 1);
+
+            if (current->value < toCompare->value) {
+                int temp            = current->value;
+                current->value      = toCompare->value;
+                toCompare->value    = temp;
+            }
+        }
+    }
 }
 
 /*
