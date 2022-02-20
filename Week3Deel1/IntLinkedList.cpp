@@ -112,9 +112,9 @@ void IntLinkedList::bubbleSort()
  */  
 
 /*
- *  gemeten snelheid van dit algoritme: O(...)
+ *  gemeten snelheid van dit algoritme: O(n^3)
  *  onderbouwing:
- *
+ *      waar de tijd verdubbelt (factor 2) wordt de tijd groter met een factor van 8, wat 2^3 is.
  *
  */
 
