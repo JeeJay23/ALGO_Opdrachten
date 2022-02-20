@@ -78,12 +78,14 @@ void IntLinkedList::bubbleSort()
     for (int i = 0; i < length2() -1; i++) {
         for (int j = length2() - 1; j > i; j--) {
 
+            // store links to decrease amount of iterating through list
             IntLink* current = getAt(j);
             IntLink* toCompare = getAt(j - 1);
 
+            // swap values instead of actual links
             if (current->value < toCompare->value) {
                 int temp            = current->value;
-                current->value      = toCompare->value;
+                current->value      = toCompare->value; // dit zal nog langzamer lopen met SetAt
                 toCompare->value    = temp;
             }
         }
@@ -91,19 +93,20 @@ void IntLinkedList::bubbleSort()
 }
 
 /*
- *  geschatte snelheid van dit algoritme: O(...)
+ *  geschatte snelheid van dit algoritme: O(n^2)
  *  onderbouwing:
- *
- *
+ *      De logica van het algoritme verandert niet, dus het aantal compares blijven hetzelfde.
+ *      Wel zal het accessen van de links evenredig groter worden in verhouding met de grootte van de list. 
+ *      Dit is omdat omdat het aantal stappen gelijk is aan de index bij getAt(n).
  */
 
  /*
  * metingen van de duur van het sorteren...
  *
  *    aantal waarden:       duur in us:
- *        1000
- *        2000
- *        5000
+ *        1000                3254843 
+ *        2000               26617826
+ *        5000              416514790
  *       10000
  *         ...
  */  

@@ -8,9 +8,6 @@ public:
     virtual            ~IntLink();
 
 public:
-    /*
-     * plaats hier de methodes voor de klasse
-     */
 
 private:
     int value;
