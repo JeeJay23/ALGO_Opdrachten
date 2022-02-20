@@ -16,13 +16,8 @@ public: // vraag 1
     virtual void        showAll()               const;
     virtual NAWLink*    removeFirst( const NAW& );
 
-    /*
-     * plaats hier evenuteel extra methodes voor de klasse
-     */
-
 private:
-    /*
-     * attributen voor de klasse
-     */
+    NAWLink* first = nullptr;
+    int size = 0;
 };
 

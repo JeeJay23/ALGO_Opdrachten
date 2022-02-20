@@ -5,20 +5,16 @@
 class NAWLink
 {
 private:
-                    NAWLink();
                     NAWLink( const NAW&, NAWLink* );
 public:
     virtual        ~NAWLink();
 
-public:
-    /*
-     * plaats hier de methodes voor de klasse
-     */
+    const NAW& getItem() const;
+    NAWLink* getNext() const;
 
 private:
-    /*
-     * attributen voor de klasse
-     */
+    NAWLink* next = nullptr;
+    const NAW& const item;
 
 private:
     friend class NAWLinkedList;
