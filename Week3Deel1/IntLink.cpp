@@ -7,7 +7,9 @@ IntLink::IntLink()
 {
 }
 
-IntLink::IntLink( int, IntLink* )
+IntLink::IntLink( int i, IntLink* n )
+	:	value(i)
+	,	next(n)
 {
 }
 

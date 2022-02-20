@@ -23,8 +23,7 @@ public: // niet gevraagd wel handig... (zie vraag 1)
     virtual void        showAll()       const;
 
 private:
-    /*
-     * attributen voor de klasse
-     */
+    IntLink *first;
+    int size;
 };
 

@@ -7,34 +7,70 @@
 #include <iostream>
 
 IntLinkedList::IntLinkedList()
+    :   first(nullptr)
+    ,   size(0)
 {
 }
 
 
 IntLinkedList::~IntLinkedList()
 {
+    // delete first?
 }
 
-IntLink* IntLinkedList::getAt( int ) const
+IntLink* IntLinkedList::getAt( int i ) const
 {
+    IntLink *next = first;
+    int cnt = 0;
+
+    // return link with matching index
+    while (next != nullptr) {
+        if (cnt++ == i) return next;
+        next = next->next;
+    }
+
+    // if not found, return null
     return nullptr;
 }
 
-bool IntLinkedList::setAt( int, int )
+bool IntLinkedList::setAt( int i, int v )
 {
     bool succeeded = false;
+
+    IntLink* next = first;
+    int cnt = 0;
+
+    while (next != nullptr) {
+        if (cnt == i) {
+            next->value = v;
+            succeeded = true;
+            return succeeded;
+        }
+        cnt++;
+        next = next->next;
+    }
 
     return succeeded;
 }
 
 int IntLinkedList::length1() const
 {
-    return -1;
+    // tel aantal links
+
+    IntLink* next = first;
+    int cnt = 0;
+
+    while (next != nullptr) {
+        cnt++;
+        next = next->next;
+    }
+
+    return cnt;
 }
 
 int IntLinkedList::length2() const
 {
-    return -1;
+    return size;
 }
 
 void IntLinkedList::bubbleSort()
@@ -66,10 +102,18 @@ void IntLinkedList::bubbleSort()
  *
  */
 
-void IntLinkedList::addToStart( int )
+void IntLinkedList::addToStart( int i )
 {
+    IntLink* toAdd = new IntLink(i, first);
+    first = toAdd;
+    size++;
 }
 
 void IntLinkedList::showAll() const
 {
+    IntLink* next = first;
+    while (next != nullptr) {
+        std::printf("%p : %i\n", next, next->value);
+        next = next->next;
+    }
 }
