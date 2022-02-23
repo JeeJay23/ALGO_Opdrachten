@@ -68,6 +68,7 @@ NAWLink* NAWLinkedList::removeFirst( const NAW& naw )
             toDelete = next;
             prev->next = toDelete->getNext();
             delete(toDelete);
+            return prev->next;
         }
         else {
             // naw not found, go to next in list
