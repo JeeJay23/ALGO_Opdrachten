@@ -139,7 +139,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="StringLink.cpp" />
+    <ClCompile Include="StringStack.cpp" />
     <ClCompile Include="W4D1.cpp" />
+    <ClCompile Include="XmlValidator.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="StringLink.h" />
+    <ClInclude Include="StringStack.h" />
+    <ClInclude Include="XmlValidator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

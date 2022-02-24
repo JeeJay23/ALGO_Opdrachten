@@ -18,5 +18,25 @@
     <ClCompile Include="W4D1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="StringStack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StringLink.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlValidator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="StringStack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StringLink.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XmlValidator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

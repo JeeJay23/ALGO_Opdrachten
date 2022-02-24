@@ -2,10 +2,29 @@
 //
 
 #include <iostream>
+#include <string>
+#include "XmlValidator.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    const std::string xmlStr("<persoon>\
+<naam>Dagobert</naam>\
+<adres>geldpakhuis</adres>\
+<woonplaats>Duckstad</woonplaats>\
+</persoon>");
+
+    const std::string faultyXmlStr("<persoon>\
+<naam>Dagobert</naam>\
+<adres>geldpakhuis</adres>\
+<woonplaats>Duckstad\
+</persoon>");
+
+    XmlValidator validator;
+    bool shoudBeValid = validator.validate(xmlStr);
+    bool shoulndBeValid = validator.validate(faultyXmlStr);
+
+    std::printf("bool shouldBeValid : %i\nbool shouldntBeValid : %i", shoudBeValid, shoulndBeValid);
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
